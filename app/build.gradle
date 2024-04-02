@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.dagger.hilt.android'
+    id 'kotlin-android'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.myapplication"
-        minSdk 24
+        minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -28,6 +29,17 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -39,21 +51,22 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // Retrofit
+    // Retrofit - REST API
     implementation 'com.squareup.retrofit2:retrofit:2.10.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.10.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
     implementation 'com.google.code.gson:gson:2.10.1'
 
-    // Dagger Hilt
-    implementation 'com.google.dagger:hilt-android:2.51'
-    annotationProcessor 'com.google.dagger:hilt-compiler:2.51'
-    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.51'
-    androidTestAnnotationProcessor 'com.google.dagger:hilt-compiler:2.51'
-    testImplementation 'com.google.dagger:hilt-android-testing:2.51'
-    testAnnotationProcessor 'com.google.dagger:hilt-compiler:2.51'
+    // Dagger Hilt - DI Module
+    def hilt_version = "2.51"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    androidTestAnnotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    testAnnotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
 
-    def lifecycle_version = "2.2.0"
+    def lifecycle_version = "2.7.0"
     //뷰 모델 - 라잎 ㅡ 사이클 관련
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -61,5 +74,10 @@ dependencies {
     // 라이브 데이타 - 옵저버 패턴 관련 - 데이터 변경 사항을 알수 있다.
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // kotlin
+    def kotlin_version = "1.9.23"
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 }
