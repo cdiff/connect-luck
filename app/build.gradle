@@ -80,4 +80,7 @@ dependencies {
     implementation "androidx.core:core-ktx:1.12.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+
+    // Data Module
+    implementation project(':data')
 }
