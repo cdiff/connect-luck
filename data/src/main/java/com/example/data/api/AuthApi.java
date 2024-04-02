@@ -4,7 +4,6 @@ import com.example.data.dto.LoginRequest;
 import com.example.data.dto.SignUpRequest;
 import com.example.data.dto.User;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -23,7 +22,7 @@ public interface AuthApi {
     );
 
     @POST("/api/findEmailByPhone")
-    Call<ResponseBody> findEmailByPhone(
+    Call<String> findEmailByPhone(
             @Query("phone") String phone
     );
 }

@@ -4,6 +4,7 @@ import com.example.data.api.AuthApi;
 import com.example.data.dto.LoginRequest;
 import com.example.data.dto.User;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,9 +33,8 @@ public class Retrofit2Test {
         LoginRequest loginRequest = new LoginRequest("test4@test.com", "test4");
         Response<User> user = loginApi.login(loginRequest).execute();
 
-        System.out.println(user.body());
-        System.out.println(user.code());
-
-
+        Assert.assertNotNull(user.body());
+        Assert.assertEquals(200, user.code());
+        
     }
 }
