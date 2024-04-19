@@ -1,4 +1,4 @@
-package com.example.myapplication.view.signupfragment;
+package com.example.myapplication.view.auth;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.data.api.AuthApi;
 import com.example.data.dto.SignUpRequest;
+import com.example.data.dto.TokenResponse;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSignUpInputPhonenumberBinding;
 import com.example.myapplication.viewmodel.SignUpViewModel;
@@ -72,22 +73,21 @@ public class SignUpInputPhoneNumberFragment extends Fragment {
                 getActivity().runOnUiThread(() -> {
                     Log.i("SignUpInputPhoneNumberFragment", "회원가입 요청: " + signUpRequest.toString());
                     try {
-                        Call<String> call = authApi.signup(signUpRequest);
-                        call.enqueue(new Callback<String>() {
+                        Call<TokenResponse> call = authApi.signup(signUpRequest);
+                        call.enqueue(new Callback<TokenResponse>() {
                             @Override
-                            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                            public void onResponse(@NonNull Call<TokenResponse> call, @NonNull Response<TokenResponse> response) {
                                 if (response.isSuccessful()) {
-                                    String jwtToken = response.body();
+                                    TokenResponse jwtToken = response.body();
                                     if (jwtToken != null) {
-                                        Toast.makeText(getActivity(), "로인그 성공", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                         Log.e("LoginFragment", jwtToken.toString());
-
                                     }
                                 }
                             }
 
                             @Override
-                            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                            public void onFailure(@NonNull Call<TokenResponse> call, @NonNull Throwable t) {
                                 Toast.makeText(getActivity(), "로그인 실패", Toast.LENGTH_SHORT).show();
                                 System.out.println("실패");
                                 Log.e("LoginFragment", t.getMessage());

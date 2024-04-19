@@ -1,6 +1,8 @@
 package com.example.myapplication.di;
 
 import com.example.data.api.AuthApi;
+import com.example.data.api.FoodTruckApi;
+import com.example.data.api.UserApi;
 
 import javax.inject.Singleton;
 
@@ -14,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 @InstallIn(SingletonComponent.class)
-public class ApiModule {
+public class RetrofitModule {
 
     @Singleton
     @Provides
@@ -30,6 +32,18 @@ public class ApiModule {
     @Provides
     public AuthApi provideLoginApi(Retrofit retrofit) {
         return retrofit.create(AuthApi.class);
+    }
+
+    @Singleton
+    @Provides
+    public FoodTruckApi provideFoodTruckApi(Retrofit retrofit) {
+        return retrofit.create(FoodTruckApi.class);
+    }
+
+    @Singleton
+    @Provides
+    public UserApi provideUserApi(Retrofit retrofit) {
+        return retrofit.create(UserApi.class);
     }
 
 }

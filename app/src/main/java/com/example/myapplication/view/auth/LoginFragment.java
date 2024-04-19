@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 
 import com.example.data.api.AuthApi;
 import com.example.data.dto.LoginRequest;
+import com.example.data.dto.TokenResponse;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentLoginBinding;
 
@@ -42,12 +43,12 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), "로그인 시도중", Toast.LENGTH_SHORT).show();
 
                 try {
-                    Call<String> call = authApi.login(loginRequest);
-                    call.enqueue(new retrofit2.Callback<String>() {
+                    Call<TokenResponse> call = authApi.login(loginRequest);
+                    call.enqueue(new retrofit2.Callback<TokenResponse>() {
                         @Override
-                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        public void onResponse(@NonNull Call<TokenResponse> call, @NonNull Response<TokenResponse> response) {
                             if (response.isSuccessful()) {
-                                String jwtToken = response.body();
+                                TokenResponse jwtToken = response.body();
                                 if (jwtToken != null) {
                                     Toast.makeText(getActivity(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                     Log.d("LoginFragment", jwtToken.toString());
@@ -56,7 +57,7 @@ public class LoginFragment extends Fragment {
                         }
 
                         @Override
-                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        public void onFailure(@NonNull Call<TokenResponse> call, @NonNull Throwable t) {
                             Toast.makeText(getActivity(), "로그인 실패", Toast.LENGTH_SHORT).show();
                             Log.e("LoginFragment", t.getMessage());
                         }

@@ -1,4 +1,4 @@
-package com.example.myapplication.view.signupfragment;
+package com.example.myapplication.view.auth;
 
 import android.os.Bundle;
 import android.text.Editable;

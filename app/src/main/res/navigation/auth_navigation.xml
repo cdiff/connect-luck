@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_navigation"
-    app:startDestination="@id/loginFragment2">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/signUpInputEmailFragment2"
-        android:name="com.example.myapplication.view.signupfragment.SignUpInputEmailFragment"
+        android:name="com.example.myapplication.view.auth.SignUpInputEmailFragment"
         android:label="fragment_sign_up_input_email"
         tools:layout="@layout/fragment_sign_up_input_email">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpInputPasswordFragment"
-        android:name="com.example.myapplication.view.signupfragment.SignUpInputPasswordFragment"
+        android:name="com.example.myapplication.view.auth.SignUpInputPasswordFragment"
         android:label="fragment_sign_up_input_password"
         tools:layout="@layout/fragment_sign_up_input_password">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpInputNicknameFragment"
-        android:name="com.example.myapplication.view.signupfragment.SignUpInputNicknameFragment"
+        android:name="com.example.myapplication.view.auth.SignUpInputNicknameFragment"
         android:label="fragment_sign_up_input_nickname"
         tools:layout="@layout/fragment_sign_up_input_nickname">
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpInputPhoneNumberFragment"
-        android:name="com.example.myapplication.view.signupfragment.SignUpInputPhoneNumberFragment"
+        android:name="com.example.myapplication.view.auth.SignUpInputPhoneNumberFragment"
         android:label="fragment_sign_up_input_phonenumber"
         tools:layout="@layout/fragment_sign_up_input_phonenumber" />
     <fragment
@@ -43,7 +43,7 @@
         android:label="fragment_email_find"
         tools:layout="@layout/fragment_email_find" />
     <fragment
-        android:id="@+id/loginFragment2"
+        android:id="@+id/loginFragment"
         android:name="com.example.myapplication.view.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
