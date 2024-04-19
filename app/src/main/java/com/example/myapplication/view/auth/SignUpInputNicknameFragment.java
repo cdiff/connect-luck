@@ -16,7 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSignUpInputNicknameBinding;
-import com.example.myapplication.viewmodel.SignUpViewModel;
+import com.example.myapplication.viewmodel.AuthViewModel;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
@@ -24,10 +24,13 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class SignUpInputNicknameFragment extends Fragment implements Validator.ValidationListener {
     private FragmentSignUpInputNicknameBinding binding; // 데이터 바인딩 객체
 
-    SignUpViewModel signUpViewModel;
+    AuthViewModel authViewModel;
     @Length(min = 2, max = 100, message = "최소2")//길이
     @NotEmpty(message = "입력해주세용") //필수입력
     EditText nickname;
@@ -36,10 +39,11 @@ public class SignUpInputNicknameFragment extends Fragment implements Validator.V
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // 데이터 바인딩 초기화
         binding = FragmentSignUpInputNicknameBinding.inflate(inflater, container, false);
+        authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
+        binding.setViewModel(authViewModel);
 
         nickname = binding.inputNickname;
 
-        signUpViewModel = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);
 
         Validator validator = new Validator(this);
         validator.setValidationListener(this);
@@ -63,7 +67,6 @@ public class SignUpInputNicknameFragment extends Fragment implements Validator.V
 
 
         binding.nextButton.setOnClickListener(v -> {
-            signUpViewModel.setName(binding.inputNickname.getText().toString());
             Navigation.findNavController(v).navigate(R.id.action_signUpInputNicknameFragment_to_signUpInputPhoneNumberFragment);
         });
 

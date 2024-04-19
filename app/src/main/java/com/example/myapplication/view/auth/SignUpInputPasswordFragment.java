@@ -3,6 +3,7 @@ package com.example.myapplication.view.auth;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import androidx.navigation.Navigation;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSignUpInputPasswordBinding;
-import com.example.myapplication.viewmodel.SignUpViewModel;
+import com.example.myapplication.viewmodel.AuthViewModel;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
@@ -26,10 +27,13 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class SignUpInputPasswordFragment extends Fragment implements Validator.ValidationListener {
 
     FragmentSignUpInputPasswordBinding binding;
-    SignUpViewModel signUpViewModel;
+    AuthViewModel authViewModel;
 
     @Length(min = 8, max = 100, message = "최소8")//길이
     @NotEmpty(message = "입력해주세용") //필수입력
@@ -41,11 +45,10 @@ public class SignUpInputPasswordFragment extends Fragment implements Validator.V
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // 뷰 인플레이트
         binding = FragmentSignUpInputPasswordBinding.inflate(inflater, container, false);
+        authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
+        binding.setViewModel(authViewModel);
 
         inputpassword = binding.password;
-
-        signUpViewModel = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);
-
 
         Validator validator = new Validator(this);
         validator.setValidationListener(this);
@@ -94,10 +97,9 @@ public class SignUpInputPasswordFragment extends Fragment implements Validator.V
             @Override
             public void onClick(View v) {
                 binding.prg1.setProgress(100);
-                signUpViewModel.setPassword(binding.password.getText().toString());
                 Navigation.findNavController(v).navigate(R.id.action_signUpInputPasswordFragment_to_signUpInputNicknameFragment);
-                System.out.println(signUpViewModel.getEmail().getValue());
-                System.out.println(signUpViewModel.getPassword().getValue());
+                Log.d("SignUpInputPasswordFragment", "email: " + authViewModel.getEmail().getValue());
+                Log.d("SignUpInputPasswordFragment", "password: " + authViewModel.getPassword().getValue());
             }
         });
 

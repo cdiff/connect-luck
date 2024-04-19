@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
-import com.example.data.api.AuthApi;
 import com.example.data.dto.LoginRequest;
-import com.example.data.dto.User;
 
 import org.junit.Assert;
 import org.junit.Before;

@@ -3,7 +3,6 @@ package com.example.myapplication.view.auth;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,35 +13,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.data.api.AuthApi;
-import com.example.data.dto.SignUpRequest;
-import com.example.data.dto.TokenResponse;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSignUpInputPhonenumberBinding;
-import com.example.myapplication.viewmodel.SignUpViewModel;
-
-import javax.inject.Inject;
+import com.example.myapplication.viewmodel.AuthViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 @AndroidEntryPoint
 public class SignUpInputPhoneNumberFragment extends Fragment {
 
-    @Inject
-    AuthApi authApi;
-
     private FragmentSignUpInputPhonenumberBinding binding;
-    private SignUpViewModel signUpViewModel;
+    private AuthViewModel authViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSignUpInputPhonenumberBinding.inflate(inflater, container, false);
+        authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
+        binding.setViewModel(authViewModel);
 
-        signUpViewModel = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);
 
         binding.inputPhonenumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -62,50 +51,7 @@ public class SignUpInputPhoneNumberFragment extends Fragment {
         });
 
         binding.nextButton.setOnClickListener(v -> {
-            String email = signUpViewModel.getEmail().getValue(); // 이메일 값 가져오기
-            String password = signUpViewModel.getPassword().getValue(); // 비밀번호 값 가져오기
-            String name = signUpViewModel.getName().getValue(); // 이름 값 가져오기
-            String phoneNumber = binding.inputPhonenumber.getText().toString(); // 전화번호 값 가져오기
-
-            if (email != null && password != null && name != null) {
-                // 모든 필수 값이 null이 아닌 경우에만 SignUpRequest 객체 생성
-                SignUpRequest signUpRequest = new SignUpRequest(email, password, name, phoneNumber);
-                getActivity().runOnUiThread(() -> {
-                    Log.i("SignUpInputPhoneNumberFragment", "회원가입 요청: " + signUpRequest.toString());
-                    try {
-                        Call<TokenResponse> call = authApi.signup(signUpRequest);
-                        call.enqueue(new Callback<TokenResponse>() {
-                            @Override
-                            public void onResponse(@NonNull Call<TokenResponse> call, @NonNull Response<TokenResponse> response) {
-                                if (response.isSuccessful()) {
-                                    TokenResponse jwtToken = response.body();
-                                    if (jwtToken != null) {
-                                        Toast.makeText(getActivity(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                                        Log.e("LoginFragment", jwtToken.toString());
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(@NonNull Call<TokenResponse> call, @NonNull Throwable t) {
-                                Toast.makeText(getActivity(), "로그인 실패", Toast.LENGTH_SHORT).show();
-                                System.out.println("실패");
-                                Log.e("LoginFragment", t.getMessage());
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        System.out.println("실패");
-                    }
-                });
-            } else {
-                // 필수 값 중 하나라도 null인 경우 처리
-                Toast.makeText(getActivity(), "필수 정보를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
-                System.out.println(email);
-                System.out.println(name);
-                System.out.println(password);
-                System.out.println(phoneNumber);
-            }
+            Toast.makeText(requireContext(), "다음 버튼 클릭", Toast.LENGTH_SHORT).show();
         });
 
         return binding.getRoot();
