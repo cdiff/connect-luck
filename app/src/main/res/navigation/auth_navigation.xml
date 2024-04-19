@@ -3,28 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/loginFragment2">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.myapplication.view.auth.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/signUpInputEmailFragment2"
+        android:name="com.example.myapplication.view.signupfragment.SignUpInputEmailFragment"
+        android:label="fragment_sign_up_input_email"
+        tools:layout="@layout/fragment_sign_up_input_email">
         <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_emailFindFragment"
-            app:destination="@id/emailFindFragment" />
+            android:id="@+id/action_signUpInputEmailFragment2_to_signUpInputPasswordFragment"
+            app:destination="@id/signUpInputPasswordFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.example.myapplication.view.auth.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        android:id="@+id/signUpInputPasswordFragment"
+        android:name="com.example.myapplication.view.signupfragment.SignUpInputPasswordFragment"
+        android:label="fragment_sign_up_input_password"
+        tools:layout="@layout/fragment_sign_up_input_password">
+        <action
+            android:id="@+id/action_signUpInputPasswordFragment_to_signUpInputNicknameFragment"
+            app:destination="@id/signUpInputNicknameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpInputNicknameFragment"
+        android:name="com.example.myapplication.view.signupfragment.SignUpInputNicknameFragment"
+        android:label="fragment_sign_up_input_nickname"
+        tools:layout="@layout/fragment_sign_up_input_nickname">
+        <action
+            android:id="@+id/action_signUpInputNicknameFragment_to_signUpInputPhoneNumberFragment"
+            app:destination="@id/signUpInputPhoneNumberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpInputPhoneNumberFragment"
+        android:name="com.example.myapplication.view.signupfragment.SignUpInputPhoneNumberFragment"
+        android:label="fragment_sign_up_input_phonenumber"
+        tools:layout="@layout/fragment_sign_up_input_phonenumber" />
     <fragment
         android:id="@+id/emailFindFragment"
         android:name="com.example.myapplication.view.auth.EmailFindFragment"
         android:label="fragment_email_find"
         tools:layout="@layout/fragment_email_find" />
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.myapplication.view.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment2_to_emailFindFragment"
+            app:destination="@id/emailFindFragment" />
+        <action
+            android:id="@+id/action_loginFragment2_to_signUpInputEmailFragment2"
+            app:destination="@id/signUpInputEmailFragment2" />
+    </fragment>
 </navigation>

@@ -13,7 +13,6 @@ import androidx.navigation.Navigation;
 
 import com.example.data.api.AuthApi;
 import com.example.data.dto.LoginRequest;
-import com.example.data.dto.User;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentLoginBinding;
 
@@ -29,7 +28,7 @@ public class LoginFragment extends Fragment {
     FragmentLoginBinding binding;
 
     @Inject
-    AuthApi authApi;
+    AuthApi authApi; //Retrofit을 사용하여 서버에 인증 관련 요청 보내는 데 사용
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -43,21 +42,21 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), "로그인 시도중", Toast.LENGTH_SHORT).show();
 
                 try {
-                    Call<User> call = authApi.login(loginRequest);
-                    call.enqueue(new retrofit2.Callback<User>() {
+                    Call<String> call = authApi.login(loginRequest);
+                    call.enqueue(new retrofit2.Callback<String>() {
                         @Override
-                        public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                             if (response.isSuccessful()) {
-                                User user = response.body();
-                                if (user != null) {
+                                String jwtToken = response.body();
+                                if (jwtToken != null) {
                                     Toast.makeText(getActivity(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                                    Log.d("LoginFragment", user.toString());
+                                    Log.d("LoginFragment", jwtToken.toString());
                                 }
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<User> call, Throwable t) {
+                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                             Toast.makeText(getActivity(), "로그인 실패", Toast.LENGTH_SHORT).show();
                             Log.e("LoginFragment", t.getMessage());
                         }
@@ -69,11 +68,11 @@ public class LoginFragment extends Fragment {
         });
 
         binding.signup.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_signUpFragment);
+            Navigation.findNavController(v).navigate(R.id.action_loginFragment2_to_signUpInputEmailFragment2);
         });
 
         binding.emailFind.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_emailFindFragment);
+            Navigation.findNavController(v).navigate(R.id.action_loginFragment2_to_emailFindFragment);
         });
 
         return binding.getRoot();

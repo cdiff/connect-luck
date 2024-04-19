@@ -31,10 +31,10 @@ public class Retrofit2Test {
     @Test
     public void testRetrofit2() throws IOException {
         LoginRequest loginRequest = new LoginRequest("test4@test.com", "test4");
-        Response<User> user = loginApi.login(loginRequest).execute();
+        Response<String> user = loginApi.login(loginRequest).execute();
 
         Assert.assertNotNull(user.body());
         Assert.assertEquals(200, user.code());
-        
+
     }
 }

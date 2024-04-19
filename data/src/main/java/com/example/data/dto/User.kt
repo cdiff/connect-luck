@@ -1,6 +1,7 @@
 package com.example.data.dto
 
 import com.google.gson.annotations.SerializedName
+
 data class User(
     @SerializedName("createdAt") var createdAt: String? = null,
     @SerializedName("updatedAt") var updatedAt: String? = null,

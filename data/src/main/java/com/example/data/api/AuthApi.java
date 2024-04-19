@@ -2,7 +2,6 @@ package com.example.data.api;
 
 import com.example.data.dto.LoginRequest;
 import com.example.data.dto.SignUpRequest;
-import com.example.data.dto.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,18 +10,36 @@ import retrofit2.http.Query;
 
 public interface AuthApi {
 
-    @POST("/api/signup")
-    Call<User> signup(
+    /**
+     * 회원가입
+     *
+     * @param signUpRequest 회원가입 요청 정보
+     * @return String 회원 JWT 토큰
+     */
+    @POST("/api/auth/signup")
+    Call<String> signup(
             @Body SignUpRequest signUpRequest
     );
 
-    @POST("/api/login")
-    Call<User> login(
+    /**
+     * 로그인
+     *
+     * @param loginRequest 로그인 요청 정보
+     * @return String 회원 JWT 토큰
+     */
+    @POST("/api/auth/login")
+    Call<String> login(
             @Body LoginRequest loginRequest
     );
 
-    @POST("/api/findEmailByPhone")
+    @POST("/api/auth/findEmailByPhone")
     Call<String> findEmailByPhone(
             @Query("phone") String phone
     );
+
+    @POST("/api/auth/email-check")
+    Call<Boolean> emailCheck(
+            @Query("email") String email
+    );
+
 }

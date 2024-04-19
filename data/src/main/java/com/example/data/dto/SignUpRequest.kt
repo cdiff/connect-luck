@@ -1,8 +1,8 @@
 package com.example.data.dto
 
 data class SignUpRequest(
-    val email: String,
-    val password: String,
-    val name: String,
-    val phoneNumber: Number
+    var email: String,
+    var password: String,
+    var name: String,
+    var phoneNumber: String,
 )

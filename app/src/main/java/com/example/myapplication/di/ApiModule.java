@@ -16,7 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @InstallIn(SingletonComponent.class)
 public class ApiModule {
 
-
     @Singleton
     @Provides
     public Retrofit provideRetrofit() {
