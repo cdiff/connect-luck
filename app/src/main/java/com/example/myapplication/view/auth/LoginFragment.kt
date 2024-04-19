@@ -1,5 +1,6 @@
 package com.example.myapplication.view.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,10 @@ import androidx.navigation.Navigation
 import com.example.data.api.AuthApi
 import com.example.data.dto.LoginRequest
 import com.example.data.dto.TokenResponse
-import com.example.myapplication.R
+import com.example.myapplication.common.MySharedPreferences
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.di.RetrofitClient
+import com.example.myapplication.view.event.EventActivity
 import com.example.myapplication.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class LoginFragment @Inject constructor() : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
     private lateinit var authViewModel: AuthViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,6 +48,16 @@ class LoginFragment @Inject constructor() : Fragment() {
                 if (response.isSuccessful) {
                     val token: String = response.body()!!.token!!
                     Toast.makeText(context, "로그인 성공 토큰: $token", Toast.LENGTH_SHORT).show()
+                    MySharedPreferences.setUserInfo(
+                        requireContext(),
+                        loginRequest.email,
+                        loginRequest.password
+                    )
+                    MySharedPreferences.setToken(requireContext(), token)
+                    Intent(requireContext(), EventActivity::class.java).apply {
+                        startActivity(this)
+                    }
+                    requireActivity().finish()
                 } else {
                     Toast.makeText(context, "로그인 실패", Toast.LENGTH_SHORT).show()
                 }

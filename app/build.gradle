@@ -22,7 +22,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res/layouts/start', 'src/main/res/layouts/auth', 'src/main/res/layouts', 'src/main/res']
+            res.srcDirs = ['src/main/res/layouts/event' ,'src/main/res/layouts/start', 'src/main/res/layouts/auth', 'src/main/res/layouts', 'src/main/res']
         }
     }
 

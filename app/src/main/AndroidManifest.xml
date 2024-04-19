@@ -24,6 +24,9 @@
             android:name=".view.auth.AuthActivity"
             android:exported="false" />
         <activity
+            android:name=".view.event.EventActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartActivity"
             android:exported="true">
             <intent-filter>
