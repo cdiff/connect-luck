@@ -195,6 +195,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="추천 푸드트럭"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
                     android:textColor="@color/black" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -216,6 +218,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="60dp"
                     android:text="추천 행사"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
                     android:textColor="@color/black" />
 
                 <androidx.recyclerview.widget.RecyclerView

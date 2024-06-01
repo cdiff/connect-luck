@@ -1,7 +1,9 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.MyApplication" parent="Theme.AppCompat.Light.NoActionBar">
+
         <item name="android:background">@color/white</item>
+
 
 
         <!-- Customize your dark theme here. -->

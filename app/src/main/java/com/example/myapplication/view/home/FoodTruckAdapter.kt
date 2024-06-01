@@ -18,7 +18,7 @@ class FoodTruckAdapter(
     private val onItemClick: (FoodTruckHeader) -> Unit // 클릭 콜백 추가
 ) : RecyclerView.Adapter<FoodTruckAdapter.FoodTruckViewHolder>() {
 
-    private var selectedPosition: Int = RecyclerView.NO_POSITION
+    private val selectedPositions: MutableSet<Int> = mutableSetOf()
 
     inner class FoodTruckViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -31,7 +31,11 @@ class FoodTruckAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    selectedPosition = position
+                    if (selectedPositions.contains(position)) {
+                        selectedPositions.remove(position)
+                    } else {
+                        selectedPositions.add(position)
+                    }
                     notifyDataSetChanged() // 변경된 상태 반영
                     onItemClick(foodTruckList[position])
                 }
@@ -63,12 +67,12 @@ class FoodTruckAdapter(
         }
 
         // 클릭된 FoodTruck에 대해 배경색 변경
-        if (position == selectedPosition) {
-            // 클릭된 아이템의 배경색을 노란색으로 변경
-            holder.itemView.setBackgroundResource(android.R.color.black)
-        } else {
-            holder.itemView.setBackgroundResource(android.R.color.transparent)
-        }
+        val isSelected = selectedPositions.contains(position)
+        holder.itemView.isSelected = isSelected
+        holder.textView.isSelected = isSelected
+        holder.textView1.isSelected = isSelected
+        holder.textView2.isSelected = isSelected
+        holder.textView3.isSelected = isSelected
     }
 
     override fun getItemCount(): Int {
@@ -81,10 +85,6 @@ class FoodTruckAdapter(
     }
 
     fun getSelectedFoodTruckId(): Int? {
-        return if (selectedPosition != RecyclerView.NO_POSITION) {
-            foodTruckList[selectedPosition].id
-        } else {
-            null
-        }
+        return selectedPositions.firstOrNull()?.let { foodTruckList[it].id }
     }
 }

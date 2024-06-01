@@ -14,8 +14,8 @@
         <action
             android:id="@+id/action_foodTruckCreateFragment_to_myPageFragment"
             app:destination="@id/myPageFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -29,8 +29,8 @@
         <action
             android:id="@+id/action_foodTruckMenuCreateFragment_to_myPageFragment"
             app:destination="@id/myPageFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -44,22 +44,22 @@
         <action
             android:id="@+id/action_myPageFragment_to_foodTruckCreateFragment"
             app:destination="@id/foodTruckCreateFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
         <action
             android:id="@+id/action_myPageFragment_to_homeActivity2"
             app:destination="@id/homeActivity2"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
         <action
             android:id="@+id/action_myPageFragment_to_mytruckFragment"
             app:destination="@id/mytruckFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -76,15 +76,15 @@
         <action
             android:id="@+id/action_mytruckFragment_to_myTruckUpdateFragment"
             app:destination="@id/myTruckUpdateFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
         <action
             android:id="@+id/action_mytruckFragment_to_foodTruckMenuFragment"
             app:destination="@id/foodTruckMenuFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -101,8 +101,8 @@
         <action
             android:id="@+id/action_foodTruckMenuFragment_to_foodTruckMenuCreateFragment"
             app:destination="@id/foodTruckMenuCreateFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>

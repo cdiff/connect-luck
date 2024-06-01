@@ -45,19 +45,23 @@ class HomeFragment : Fragment() {
             // 클릭 이벤트 처리
         }
         binding.recyclerViewFoodTrucks.adapter = foodTruckAdapter
-
-        eventAdapter = EventAdapter(requireContext(), emptyList())
-        binding.eventListView.adapter = eventAdapter
         // FoodTruckViewModel에서 초기 데이터 가져와서 ListView에 표시
         foodTruckViewModel.searchFoodTruck("") // 초기 데이터 로드
 
-        // EventViewModel에서 초기 데이터 가져와서 ListView에 표시
-        eventViewModel.loadEvents() // 초기 데이터 로드
 
         // FoodTruckViewModel에서 데이터 가져와서 ListView에 표시
         foodTruckViewModel.foodTruckList.observe(viewLifecycleOwner) { foodTruckHeaders ->
             foodTruckAdapter.updateData(foodTruckHeaders)
         }
+
+
+        eventAdapter = EventAdapter(requireContext(), emptyList())
+        binding.eventListView.adapter = eventAdapter
+
+
+        // EventViewModel에서 초기 데이터 가져와서 ListView에 표시
+        eventViewModel.loadEvents() // 초기 데이터 로드
+
 
         // EventViewModel에서 데이터 가져와서 ListView에 표시
         eventViewModel.eventList.observe(viewLifecycleOwner) { events ->

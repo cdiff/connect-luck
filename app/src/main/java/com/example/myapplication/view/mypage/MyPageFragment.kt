@@ -43,6 +43,7 @@ class MyPageFragment : Fragment() {
             }
         }
 
+
         binding.mytruck.setOnClickListener {
             findNavController().navigate(R.id.action_myPageFragment_to_mytruckFragment)
         }

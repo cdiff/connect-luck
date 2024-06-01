@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_round"
+        android:background="@drawable/btn_ronud2"
         android:layout_marginBottom="10dp"
         android:padding="7dp">
 
@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#dee2e6"
+        android:background="#f8f9fa"
         android:orientation="vertical">
 
         <TextView
@@ -41,14 +41,14 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="ttext1"
-            android:background="#dee2e6"
+            android:background="#f8f9fa"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/foodTruckType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#dee2e6"
+            android:background="#f8f9fa"
             android:text="text1"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />

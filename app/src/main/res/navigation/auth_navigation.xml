@@ -13,8 +13,8 @@
         <action
             android:id="@+id/action_signUpInputEmailFragment2_to_signUpInputPasswordFragment"
             app:destination="@id/signUpInputPasswordFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -26,8 +26,8 @@
         <action
             android:id="@+id/action_signUpInputPasswordFragment_to_signUpInputNicknameFragment"
             app:destination="@id/signUpInputNicknameFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -39,8 +39,8 @@
         <action
             android:id="@+id/action_signUpInputNicknameFragment_to_signUpInputPhoneNumberFragment"
             app:destination="@id/signUpInputPhoneNumberFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -52,8 +52,8 @@
         <action
             android:id="@+id/action_signUpInputPhoneNumberFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
@@ -70,23 +70,23 @@
         <action
             android:id="@+id/action_loginFragment2_to_emailFindFragment"
             app:destination="@id/emailFindFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
 
         <action
             android:id="@+id/action_loginFragment2_to_signUpInputEmailFragment2"
             app:destination="@id/signUpInputEmailFragment2"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_loginFragment_to_homeActivity"
             app:destination="@id/homeActivity"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
     </fragment>

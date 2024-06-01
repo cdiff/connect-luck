@@ -29,11 +29,6 @@ import com.example.myapplication.viewmodel.MyPageViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.http.Header
 import java.io.File
 import java.io.InputStream
 
@@ -65,7 +60,8 @@ class FoodTruckCreateFragment : Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.data?.let { uri ->
                 selectedImageUri = uri
-                val inputStream: InputStream? = requireContext().contentResolver.openInputStream(uri)
+                val inputStream: InputStream? =
+                    requireContext().contentResolver.openInputStream(uri)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
                 binding.profile.setImageBitmap(bitmap)
             }
@@ -82,7 +78,8 @@ class FoodTruckCreateFragment : Fragment() {
 
         // Spinner 설정
         val foodTypes = FoodType.values().map { it.name }
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, foodTypes)
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, foodTypes)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinner.adapter = adapter
 
@@ -100,15 +97,18 @@ class FoodTruckCreateFragment : Fragment() {
                 val token = MySharedPreferences.getToken(requireContext())
 
                 lifecycleScope.launch {
-                    val response = viewModel.registerFoodTruck(token, name, description, imageFile, foodType)
+                    val response =
+                        viewModel.registerFoodTruck(token, name, description, imageFile, foodType)
                     if (response.isSuccessful) {
                         findNavController().navigate(R.id.action_foodTruckCreateFragment_to_myPageFragment)
 
                         Log.d(TAG, "Food truck registration successful.")
                     } else {
-                        Log.d(TAG,"${response.errorBody()?.string()} ")
-                        Log.d(TAG,"${response.headers()} ")
-                        Log.d(TAG,"${response.body()} ")
+                        findNavController().navigate(R.id.action_foodTruckCreateFragment_to_myPageFragment)
+
+                        Log.d(TAG, "${response.errorBody()?.string()} ")
+                        Log.d(TAG, "${response.headers()} ")
+                        Log.d(TAG, "${response.body()} ")
                         Log.d(TAG, "Food truck registration failed.")
                     }
                 }
@@ -145,17 +145,26 @@ class FoodTruckCreateFragment : Fragment() {
     private fun checkPermissionsAndOpenGallery() {
         val permissionsToRequest = mutableListOf<String>()
 
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES)
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_MEDIA_IMAGES
+            )
             != PackageManager.PERMISSION_GRANTED
         ) {
             permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
         }
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_AUDIO)
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_MEDIA_AUDIO
+            )
             != PackageManager.PERMISSION_GRANTED
         ) {
             permissionsToRequest.add(Manifest.permission.READ_MEDIA_AUDIO)
         }
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_VIDEO)
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_MEDIA_VIDEO
+            )
             != PackageManager.PERMISSION_GRANTED
         ) {
             permissionsToRequest.add(Manifest.permission.READ_MEDIA_VIDEO)
