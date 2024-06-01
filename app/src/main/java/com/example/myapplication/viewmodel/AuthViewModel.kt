@@ -1,31 +1,42 @@
 package com.example.myapplication.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.data.api.AuthApi
-import com.example.data.api.ImageApi
-import com.example.data.dto.ImageUrlResponse
 import com.example.data.dto.LoginRequest
 import com.example.data.dto.SignUpRequest
-import com.example.data.dto.TokenResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.File
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor() : ViewModel() {
-    // 로그인 이메일, 비밀번호
+class AuthViewModel @Inject constructor(
+    private val authApi: AuthApi
+) : ViewModel() {
     val email = MutableLiveData<String>("")
     val password = MutableLiveData<String>("")
-
-    // 회원가입 추가 정보
     val name = MutableLiveData<String>("")
     val phoneNumber = MutableLiveData<String>("")
     val profileImageUrl = MutableLiveData<String>("")
 
+    private val _signUpSuccess = MutableLiveData<Boolean>()
+    val signUpSuccess: LiveData<Boolean> = _signUpSuccess
+
+    fun signUp() {
+        val signUpRequest = SignUpRequest(
+            email = email.value!!,
+            password = password.value!!,
+            name = name.value!!,
+            phoneNumber = phoneNumber.value!!,
+        )
+
+        viewModelScope.launch {
+            val response = authApi.signUp(signUpRequest)
+            _signUpSuccess.postValue(response.isSuccessful)
+        }
+    }
 
     fun getLoginRequest(): LoginRequest {
         return LoginRequest(
@@ -34,3 +45,5 @@ class AuthViewModel @Inject constructor() : ViewModel() {
         )
     }
 }
+
+

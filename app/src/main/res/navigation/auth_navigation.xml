@@ -13,8 +13,10 @@
         <action
             android:id="@+id/action_signUpInputEmailFragment2_to_signUpInputPasswordFragment"
             app:destination="@id/signUpInputPasswordFragment"
-            app:enterAnim="@transition/fragment_slide_left_show"
-            app:popExitAnim="@transition/fragment_slide_right_exit" />
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/signUpInputPasswordFragment"
@@ -23,7 +25,11 @@
         tools:layout="@layout/fragment_sign_up_input_password">
         <action
             android:id="@+id/action_signUpInputPasswordFragment_to_signUpInputNicknameFragment"
-            app:destination="@id/signUpInputNicknameFragment" />
+            app:destination="@id/signUpInputNicknameFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/signUpInputNicknameFragment"
@@ -32,13 +38,25 @@
         tools:layout="@layout/fragment_sign_up_input_nickname">
         <action
             android:id="@+id/action_signUpInputNicknameFragment_to_signUpInputPhoneNumberFragment"
-            app:destination="@id/signUpInputPhoneNumberFragment" />
+            app:destination="@id/signUpInputPhoneNumberFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/signUpInputPhoneNumberFragment"
         android:name="com.example.myapplication.view.auth.SignUpInputPhoneNumberFragment"
         android:label="fragment_sign_up_input_phonenumber"
-        tools:layout="@layout/fragment_sign_up_input_phonenumber" />
+        tools:layout="@layout/fragment_sign_up_input_phonenumber" >
+        <action
+            android:id="@+id/action_signUpInputPhoneNumberFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
     <fragment
         android:id="@+id/emailFindFragment"
         android:name="com.example.myapplication.view.auth.EmailFindFragment"
@@ -52,13 +70,28 @@
         <action
             android:id="@+id/action_loginFragment2_to_emailFindFragment"
             app:destination="@id/emailFindFragment"
-            app:enterAnim="@transition/fragment_slide_left_show"
-            app:popExitAnim="@transition/fragment_slide_right_exit" />
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
 
         <action
             android:id="@+id/action_loginFragment2_to_signUpInputEmailFragment2"
             app:destination="@id/signUpInputEmailFragment2"
-            app:enterAnim="@transition/fragment_slide_left_show"
-            app:popExitAnim="@transition/fragment_slide_right_exit" />
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeActivity"
+            app:destination="@id/homeActivity"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.myapplication.view.home.HomeActivity"
+        android:label="HomeActivity" />
 </navigation>

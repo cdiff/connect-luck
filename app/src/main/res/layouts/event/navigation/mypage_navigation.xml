@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mypage_navigation"
+    app:startDestination="@id/myPageFragment">
+
+    <fragment
+        android:id="@+id/foodTruckCreateFragment"
+        android:name="com.example.myapplication.view.mypage.FoodTruckCreateFragment"
+        android:label="FoodTruckCreateFragment"
+        tools:layout="@layout/fragment_my_foodturck_create"
+        >
+        <action
+            android:id="@+id/action_foodTruckCreateFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/foodTruckMenuCreateFragment"
+        android:name="com.example.myapplication.view.mypage.FoodTruckMenuCreateFragment"
+        android:label="FoodTruckMenuCreateFragment"
+        tools:layout="@layout/fragment_foodtruck_menu_create"
+        >
+        <action
+            android:id="@+id/action_foodTruckMenuCreateFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.example.myapplication.view.mypage.MyPageFragment"
+        android:label="MyPageFragment"
+        tools:layout="@layout/fragment_mypage"
+        >
+        <action
+            android:id="@+id/action_myPageFragment_to_foodTruckCreateFragment"
+            app:destination="@id/foodTruckCreateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_myPageFragment_to_homeActivity2"
+            app:destination="@id/homeActivity2"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_myPageFragment_to_mytruckFragment"
+            app:destination="@id/mytruckFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <activity
+        android:id="@+id/homeActivity2"
+        android:name="com.example.myapplication.view.home.HomeActivity"
+        android:label="HomeActivity" />
+
+    <fragment
+        android:id="@+id/mytruckFragment"
+        android:name="com.example.myapplication.view.mypage.MytruckFragment"
+        tools:layout="@layout/fragment_myfruck"
+        android:label="MytruckFragment" >
+        <action
+            android:id="@+id/action_mytruckFragment_to_myTruckUpdateFragment"
+            app:destination="@id/myTruckUpdateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_mytruckFragment_to_foodTruckMenuFragment"
+            app:destination="@id/foodTruckMenuFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/myTruckUpdateFragment"
+        android:name="com.example.myapplication.view.mypage.MyTruckUpdateFragment"
+        tools:layout="@layout/fragment_my_truck_update"
+        android:label="MyTruckUpdateFragment" />
+    <fragment
+        android:id="@+id/foodTruckMenuFragment"
+        android:name="com.example.myapplication.view.mypage.FoodTruckMenuFragment"
+        tools:layout="@layout/fragment_foodtruck_menu"
+        android:label="FoodTruckMenuFragment" >
+        <action
+            android:id="@+id/action_foodTruckMenuFragment_to_foodTruckMenuCreateFragment"
+            app:destination="@id/foodTruckMenuCreateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+</navigation>

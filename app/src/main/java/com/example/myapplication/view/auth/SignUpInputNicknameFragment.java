@@ -44,7 +44,6 @@ public class SignUpInputNicknameFragment extends Fragment implements Validator.V
 
         nickname = binding.inputNickname;
 
-
         Validator validator = new Validator(this);
         validator.setValidationListener(this);
 
@@ -61,12 +60,12 @@ public class SignUpInputNicknameFragment extends Fragment implements Validator.V
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                // empty
             }
         });
 
-
         binding.nextButton.setOnClickListener(v -> {
+            authViewModel.getName().setValue(binding.inputNickname.getText().toString().trim());
             Navigation.findNavController(v).navigate(R.id.action_signUpInputNicknameFragment_to_signUpInputPhoneNumberFragment);
         });
 

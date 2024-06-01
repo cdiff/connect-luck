@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSignUpInputPhonenumberBinding;
@@ -31,17 +32,17 @@ public class SignUpInputPhoneNumberFragment extends Fragment {
         binding = FragmentSignUpInputPhonenumberBinding.inflate(inflater, container, false);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
         binding.setViewModel(authViewModel);
-
+        binding.setLifecycleOwner(this); // Bind the fragment's lifecycle
 
         binding.inputPhonenumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                updateNextButtonState();
+                // Do nothing
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateNextButtonState();
+                // Do nothing
             }
 
             @Override
@@ -51,7 +52,19 @@ public class SignUpInputPhoneNumberFragment extends Fragment {
         });
 
         binding.nextButton.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "다음 버튼 클릭", Toast.LENGTH_SHORT).show();
+            String phoneNumber = binding.inputPhonenumber.getText().toString().trim();
+            authViewModel.getPhoneNumber().setValue(phoneNumber); // Update ViewModel
+
+            authViewModel.signUp(); // Trigger the sign-up process
+
+            authViewModel.getSignUpSuccess().observe(getViewLifecycleOwner(), success -> {
+                if (success) {
+                    Toast.makeText(requireContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(v).navigate(R.id.action_signUpInputPhoneNumberFragment_to_loginFragment);
+                } else {
+                    Toast.makeText(requireContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         return binding.getRoot();
@@ -59,12 +72,9 @@ public class SignUpInputPhoneNumberFragment extends Fragment {
 
     private void updateNextButtonState() {
         String phoneNumber = binding.inputPhonenumber.getText().toString().trim();
-
-        // 전화번호 유효성 검사 (여기서는 간단하게 길이를 확인)
         boolean isValid = !phoneNumber.isEmpty() && phoneNumber.length() >= 10; // 예시: 최소 10자리 이상
 
         binding.nextButton.setEnabled(isValid);
         binding.nextButton.setBackgroundResource(isValid ? R.drawable.btn_black : R.drawable.btn_gray);
     }
-
 }

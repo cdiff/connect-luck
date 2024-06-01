@@ -15,13 +15,13 @@ public interface UserApi {
      *
      * @param role  요청하려는 권한
      *              UserRole enum 값 중 하나를 사용합니다
-     * @param token 사용자 JWT 토큰
      */
     @POST("/api/user/add-role")
     Call<User> addRole(
-            @Query("role") String role,
-            @Header("Authorization") String token
+            @Header("Authorization") String token,
+            @Query("role") String role
     );
+
 
     /**
      * 현재 로그인한 사용자의 정보를 가져옵니다.

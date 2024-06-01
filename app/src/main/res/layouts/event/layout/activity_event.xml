@@ -27,10 +27,6 @@
             android:layout_height="wrap_content"
             android:text="보안 저장소에 저장된 유저 정보를 불러옵니다." />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="이메일" />
 
         <TextView
             android:id="@+id/user_email"
@@ -38,12 +34,6 @@
             android:layout_height="wrap_content"
             android:text="이메일" />
 
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="비밀번호" />
 
         <TextView
             android:id="@+id/user_password"

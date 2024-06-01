@@ -96,7 +96,8 @@ public class SignUpInputPasswordFragment extends Fragment implements Validator.V
         binding.nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.prg1.setProgress(100);
+
+                authViewModel.getPassword().setValue(binding.password.getText().toString().trim());
                 Navigation.findNavController(v).navigate(R.id.action_signUpInputPasswordFragment_to_signUpInputNicknameFragment);
                 Log.d("SignUpInputPasswordFragment", "email: " + authViewModel.getEmail().getValue());
                 Log.d("SignUpInputPasswordFragment", "password: " + authViewModel.getPassword().getValue());

@@ -1,5 +1,7 @@
 package com.example.data.dto
 
+import java.io.Serializable
+
 data class FoodTruckHeader(
     var id: Int,
     var name: String,
@@ -8,5 +10,5 @@ data class FoodTruckHeader(
     var managerName: String,
     var foodType: String,
     var reviewCount: Int,
-    var avgScore: Double
-) {}
+    var avgRating: Double
+) : Serializable

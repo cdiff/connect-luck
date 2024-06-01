@@ -12,34 +12,28 @@
     </data>
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".view.auth.SignUpInputNicknameFragment">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_margin="22dp"
-            android:orientation="vertical">
+            android:background="@drawable/baseline_arrow_back_ios_new_24" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="뒤로가기" />
-
-            <ProgressBar
-                android:id="@+id/prg"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_marginTop="10dp"
-                android:max="1000"
-                android:progress="750"
-                android:progressDrawable="@drawable/progressbar" />
-        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/prg"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginHorizontal="10sp"
+            android:max="1000"
+            android:progress="500"
+            android:progressDrawable="@drawable/progressbar" />
 
         <LinearLayout
             android:id="@+id/frame"
@@ -51,7 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="사용할 프로필과 닉네임을"
+                android:text="사용하실 "
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -59,22 +53,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="설정해주세요."
+                android:text="닉네임을 입력해주세요."
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="23dp"
-                android:src="@mipmap/ic_launcher"
-                app:civ_border_color="@color/black"
-                app:civ_border_overlay="true"
-                app:civ_border_width="2dp" />
 
 
             <EditText
@@ -83,8 +65,8 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="23dp"
                 android:background="@drawable/edit_text_box"
+                android:hint="   닉네임 입력"
                 android:text="@={viewModel.name}"
-                android:hint=" 닉네임 입력"
                 android:textSize="13dp" />
 
             <Button
@@ -100,5 +82,5 @@
         </LinearLayout>
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 </layout>

@@ -9,25 +9,28 @@ import com.example.data.api.AuthApi
 import com.example.data.dto.LoginRequest
 import com.example.myapplication.common.MySharedPreferences
 import com.example.myapplication.databinding.ActivityStartBinding
-import com.example.myapplication.di.RetrofitClient
 import com.example.myapplication.view.auth.AuthActivity
 import com.example.myapplication.view.event.EventActivity
+import com.example.myapplication.view.home.HomeActivity
+
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class StartActivity @Inject constructor(
-
-) : AppCompatActivity() {
+class StartActivity : AppCompatActivity() {
     lateinit var binding: ActivityStartBinding
     private lateinit var intent: Intent
+
+    @Inject
+    lateinit var authApi: AuthApi
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val authApi: AuthApi = RetrofitClient.retrofit.create(AuthApi::class.java)
         val email = MySharedPreferences.getUserEmail(this)
         val password = MySharedPreferences.getUserPassword(this)
 
@@ -55,7 +58,7 @@ class StartActivity @Inject constructor(
         intent = if (MySharedPreferences.getUserEmail(this).isBlank()) {
             Intent(this, AuthActivity::class.java)
         } else {
-            Intent(this, EventActivity::class.java)
+            Intent(this, HomeActivity::class.java)
         }
         startActivity(intent)
         this.finish()
